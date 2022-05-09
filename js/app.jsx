@@ -1,5 +1,8 @@
 'use strict';
 
+//import Footer from "./footer";
+
+
 const e = React.createElement;
 
 class App extends React.Component {
@@ -22,9 +25,12 @@ class App extends React.Component {
     );
     */
     return (
-      <button>
-        App
-      </button>
+      <div>
+        <button>
+          App
+        </button>
+        <Footer/>
+      </div>
     );
   }
 }
