@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
 		<!-- CSS overrides - remove if you don't need it -->
-		<link rel="stylesheet" href="css/app.css">
+		<!--<link rel="stylesheet" href="css/app.css">-->
 	</head>
 	<body>
 		<section class="todoapp">
@@ -68,8 +68,15 @@
 			<p>Created by <a href="http://todomvc.com">you</a></p>
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
+		<div id="like_button_container"></div>
+		<!-- Load React. -->
+		<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+		<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+		<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+		<!-- Load our React component. -->
+		<script src="js/todoitem.js"></script>
 		<!-- Scripts here. Don't remove ↓ -->
-		<script src="node_modules/todomvc-common/base.js"></script>
-		<script src="js/app.js"></script>
+		<!--<script src="node_modules/todomvc-common/base.js"></script>-->
+		<!--<script src="js/app.js"></script>-->
 	</body>
 </html>
