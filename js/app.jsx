@@ -26,6 +26,7 @@ class App extends React.Component {
     */
     return (
       <div>
+        <Header/>
         <button>
           App
         </button>
