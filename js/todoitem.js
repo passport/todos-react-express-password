@@ -2,7 +2,7 @@
 
 const e = React.createElement;
 
-class LikeButton extends React.Component {
+class TodoItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = { liked: false };
@@ -22,12 +22,19 @@ class LikeButton extends React.Component {
     );
     */
     return (
-      <button onClick={() => this.setState({ liked: true })}>
-        Like
-      </button>
+      <li>
+        <div className="view">
+          <input className="toggle" type="checkbox"/>
+          <label>{this.props.value}</label>
+          <button className="destroy"></button>
+        </div>
+        <input className="edit" defaultValue="Create a TodoMVC template"/>
+      </li>
     );
   }
 }
+
+window.TodoItem = TodoItem;
 
 /*
 const domContainer = document.querySelector('#like_button_container');
