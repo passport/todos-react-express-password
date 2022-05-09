@@ -12,18 +12,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('#render');
-    if (this.state.liked) {
-      return 'You liked this.';
-    }
-
-    /*
-    return e(
-      'button',
-      { onClick: () => this.setState({ liked: true }) },
-      'Like'
-    );
-    */
     return (
       <div>
         <Header/>
@@ -41,7 +29,5 @@ class App extends React.Component {
   }
 }
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(e(App));
