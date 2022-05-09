@@ -35,9 +35,6 @@ class App extends React.Component {
             <TodoItem value="Buy a unicorn"/>
           </ul>
         </section>
-        <button>
-          App
-        </button>
         <Footer/>
       </div>
     );
