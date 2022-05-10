@@ -10,6 +10,11 @@ class App extends React.Component {
     super(props);
     this.state = { liked: false };
   }
+  
+  componentDidMount() {
+    console.log('mounted app');
+    // TODO: fetch todos
+  }
 
   render() {
     return (
@@ -30,4 +35,5 @@ class App extends React.Component {
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(e(App));
+//root.render(e(App));
+root.render(<App />);
