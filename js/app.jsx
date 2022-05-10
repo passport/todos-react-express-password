@@ -19,7 +19,8 @@ class App extends React.Component {
   render() {
     var user = this.props.user;
     if (!user) {
-      return <Welcome />
+      //return <Welcome />
+      return <LoginPrompt />
     }
     
     return (
@@ -42,4 +43,4 @@ class App extends React.Component {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //root.render(e(App));
 var user = { name: 'Alice' };
-root.render(<App user={user} />);
+root.render(<App xuser={user} />);
