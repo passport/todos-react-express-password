@@ -17,6 +17,11 @@ class App extends React.Component {
   }
 
   render() {
+    var user = this.props.user;
+    if (!user) {
+      return <Welcome />
+    }
+    
     return (
       <div>
         <Header />
@@ -36,4 +41,5 @@ class App extends React.Component {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //root.render(e(App));
-root.render(<App />);
+var user = { name: 'Alice' };
+root.render(<App user={user} />);
