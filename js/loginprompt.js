@@ -42,8 +42,8 @@ function LoginPrompt() {
         </section>
         <button type="submit">Sign in</button>
       </form>
-      <hr/>
-      <p class="help">Don't have an account? <ReactRouterDOM.Link to="/signup">Sign up</ReactRouterDOM.Link></p>
+      <hr />
+      <p className="help">Don't have an account? <ReactRouterDOM.Link to="/signup">Sign up</ReactRouterDOM.Link></p>
     </section>
   );
 }

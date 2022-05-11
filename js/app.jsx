@@ -25,6 +25,7 @@ class App extends React.Component {
           <ReactRouterDOM.Routes>
             <ReactRouterDOM.Route path="/" element={<Home />} />
             <ReactRouterDOM.Route path="/login" element={<LoginPrompt />} />
+            <ReactRouterDOM.Route path="/signup" element={<SignupPrompt />} />
           </ReactRouterDOM.Routes>
         </div>
         <footer className="info">
