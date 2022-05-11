@@ -6,7 +6,7 @@ function Welcome() {
       </header>
       <section>
         <h2>todos helps you get things done</h2>
-        <a className="button" href="/login">Sign in</a>
+        <ReactRouterDOM.Link className="button" to="/login">Sign in</ReactRouterDOM.Link>
       </section>
     </section>
   );

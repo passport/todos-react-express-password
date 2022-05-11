@@ -4,6 +4,8 @@
 
 
 const e = React.createElement;
+const Link = ReactRouterDOM.Link;
+
 
 class App extends React.Component {
   constructor(props) {
@@ -17,17 +19,21 @@ class App extends React.Component {
   }
 
   render() {
-    //return (
-    //  <ReactRouterDOM.BrowserRouter>
-    //  </ReactRouterDOM.BrowserRouter>
-    //);
+    return (
+      <div className="App">
+        <ReactRouterDOM.Routes>
+          <ReactRouterDOM.Route path="/" element={<Welcome />} />
+          <ReactRouterDOM.Route path="/login" element={<LoginPrompt />} />
+        </ReactRouterDOM.Routes>
+      </div>
+    )
     
     
     
     var user = this.props.user;
     if (!user) {
-      //return <Welcome />
-      return <LoginPrompt />
+      return <Welcome />
+      //return <LoginPrompt />
     }
     
     return (
