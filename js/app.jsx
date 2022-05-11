@@ -20,12 +20,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <ReactRouterDOM.Routes>
-          <ReactRouterDOM.Route path="/" element={<Welcome />} />
-          <ReactRouterDOM.Route path="/login" element={<LoginPrompt />} />
-        </ReactRouterDOM.Routes>
-      </div>
+      <>
+        <div className="App">
+          <ReactRouterDOM.Routes>
+            <ReactRouterDOM.Route path="/" element={<Welcome />} />
+            <ReactRouterDOM.Route path="/login" element={<LoginPrompt />} />
+          </ReactRouterDOM.Routes>
+        </div>
+        <footer className="info">
+          <p>Double-click to edit a todo</p>
+          <p>Created by <a href="https://www.jaredhanson.me">Jared Hanson</a></p>
+          <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+          <p>Authentication powered by <a href="https://www.passportjs.org">Passport</a></p>
+        </footer>
+      </>
     )
     
     
