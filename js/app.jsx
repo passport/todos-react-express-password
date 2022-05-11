@@ -17,6 +17,13 @@ class App extends React.Component {
   }
 
   render() {
+    //return (
+    //  <ReactRouterDOM.BrowserRouter>
+    //  </ReactRouterDOM.BrowserRouter>
+    //);
+    
+    
+    
     var user = this.props.user;
     if (!user) {
       //return <Welcome />
@@ -43,4 +50,10 @@ class App extends React.Component {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //root.render(e(App));
 var user = { name: 'Alice' };
-root.render(<App xuser={user} />);
+//root.render(<App xuser={user} />);
+
+root.render(
+  <ReactRouterDOM.BrowserRouter>
+    <App xuser={user} />
+  </ReactRouterDOM.BrowserRouter>
+);
