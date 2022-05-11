@@ -6,6 +6,17 @@
 const e = React.createElement;
 const Link = ReactRouterDOM.Link;
 
+let AuthContext = React.createContext(null);
+
+console.log(AuthContext);
+
+function useAuthContext() {
+  return React.useContext(AuthContext);
+}
+
+window.useAuthContext = useAuthContext;
+
+
 
 class App extends React.Component {
   constructor(props) {
@@ -21,6 +32,7 @@ class App extends React.Component {
   render() {
     return (
       <>
+      <AuthContext.Provider value='foo'>
         <div className="App">
           <ReactRouterDOM.Routes>
             <ReactRouterDOM.Route path="/" element={<Home />} />
@@ -34,6 +46,7 @@ class App extends React.Component {
           <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
           <p>Authentication powered by <a href="https://www.passportjs.org">Passport</a></p>
         </footer>
+      </AuthContext.Provider>
       </>
     )
     

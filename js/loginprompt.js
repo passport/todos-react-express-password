@@ -1,5 +1,7 @@
 function LoginPrompt() {
   let navigate = ReactRouterDOM.useNavigate();
+  let auth = useAuthContext();
+  console.log(auth);
   
   //function handleSubmit(event) {
   const handleSubmit = async (event) => {
