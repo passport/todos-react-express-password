@@ -23,7 +23,7 @@ class App extends React.Component {
       <>
         <div className="App">
           <ReactRouterDOM.Routes>
-            <ReactRouterDOM.Route path="/" element={<Welcome />} />
+            <ReactRouterDOM.Route path="/" element={<Home />} />
             <ReactRouterDOM.Route path="/login" element={<LoginPrompt />} />
           </ReactRouterDOM.Routes>
         </div>

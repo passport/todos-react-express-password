@@ -1,4 +1,4 @@
-function Welcome() {
+function Home() {
   return (
     <section className="todohome">
       <header>
@@ -12,4 +12,4 @@ function Welcome() {
   );
 }
 
-window.Welcome = Welcome;
+window.Home = Home;
