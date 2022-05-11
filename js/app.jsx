@@ -68,7 +68,7 @@ class App extends React.Component {
       <AuthProvider value='foo'>
         <div className="App">
           <ReactRouterDOM.Routes>
-            <ReactRouterDOM.Route path="/" element={<Home />} />
+            <ReactRouterDOM.Route path="/" element={<Todos />} />
             <ReactRouterDOM.Route path="/login" element={<LoginPrompt />} />
             <ReactRouterDOM.Route path="/signup" element={<SignupPrompt />} />
           </ReactRouterDOM.Routes>

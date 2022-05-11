@@ -25,6 +25,9 @@ function LoginPrompt() {
     
     //const data = await response.json();
     
+    
+    auth.login({ username: 'alice' });
+    
     navigate(`/`);
   }
   
