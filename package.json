@@ -34,6 +34,9 @@
   "dependencies": {
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "morgan": "~1.9.1",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
     "todomvc-app-css": "^2.0.0",
     "todomvc-common": "^1.0.0"
   }

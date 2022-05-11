@@ -1,7 +1,14 @@
-var express = require('express');
+const express = require('express');
+const logger = require('morgan');
 
-var app = express();
+const app = express();
 
+const authRouter = require('./routes/auth');
+
+app.use(logger('dev'));
+app.use(express.json());
 app.use(express.static(__dirname));
+
+app.use('/', authRouter);
 
 module.exports = app;
