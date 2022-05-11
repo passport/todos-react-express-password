@@ -1,8 +1,29 @@
 function LoginPrompt() {
+  let navigate = ReactRouterDOM.useNavigate();
   
-  function handleSubmit(event) {
+  //function handleSubmit(event) {
+  const handleSubmit = async (event) => {
     console.log('handle submit...');
     event.preventDefault();
+    
+    
+    const response = await fetch('/login/password', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: "My post title",
+        body: "My post content."
+      })
+    });
+    
+    console.log(response.ok);
+    console.log(response.status);
+    
+    //const data = await response.json();
+    
+    navigate(`/`);
   }
   
   
