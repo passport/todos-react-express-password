@@ -60,14 +60,3 @@ class App extends React.Component {
     );
   }
 }
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-//root.render(e(App));
-var user = { name: 'Alice' };
-//root.render(<App xuser={user} />);
-
-root.render(
-  <ReactRouterDOM.BrowserRouter>
-    <App xuser={user} />
-  </ReactRouterDOM.BrowserRouter>
-);
