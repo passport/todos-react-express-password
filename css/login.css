@@ -7,7 +7,7 @@
 	border-radius: 8px;
 }
 
-button {
+.prompt button {
 	display: block;
 	padding: 10px;
 	width: 100%;
@@ -19,7 +19,7 @@ button {
 	cursor: pointer;
 }
 
-a.button {
+.prompt a.button {
 	box-sizing: border-box;
 	display: block;
 	padding: 10px;
@@ -33,22 +33,22 @@ a.button {
 	color: white;
 }
 
-a.google {
+.prompt a.google {
 	background: #4787ed;
 }
 
-button:hover {
+.prompt button:hover {
 	background-color: #c83f45;
 }
 
-h1 {
+.prompt h1 {
 	margin: 0 0 20px 0;
 	padding: 0 0 5px 0;
 	font-size: 24px;
 	font-weight: 500;
 }
 
-h3 {
+.prompt h3 {
 	margin-top: 0;
 	font-size: 24px;
 	font-weight: 300;
@@ -56,19 +56,19 @@ h3 {
 	color: #b83f45;
 }
 
-form section {
+.prompt form section {
 	margin: 0 0 20px 0;
 	position: relative; /* for password toggle positioning */
 }
 
-label {
+.prompt label {
 	display: block;
 	margin: 0 0 3px 0;
 	font-size: 14px;
 	font-weight: 500;
 }
 
-input {
+.prompt input {
 	box-sizing: border-box;
 	width: 100%;
 	padding: 10px;
@@ -77,24 +77,24 @@ input {
 	border-radius: 5px;
 }
 
-input[type=email]:not(:focus):invalid,
-input[type=password]:not(:focus):invalid {
+.prompt input[type=email]:not(:focus):invalid,
+.prompt input[type=password]:not(:focus):invalid {
 	color: red;
 	outline-color: red;
 }
 
-hr {
+.prompt hr {
 	border-top: 1px solid #d9d9d9;
 	border-bottom: none;
 }
 
-p.help {
+.prompt p.help {
 	text-align: center;
 	font-weight: 400;
 }
 
 /* background image by Cole Bemis <https://feathericons.com> */
-.messages p {
+.prompt .messages p {
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 1.3;

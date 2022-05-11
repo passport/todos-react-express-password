@@ -17,7 +17,7 @@ function Todos() {
   */
   
   return (
-    <div>
+    <section className="todoapp">
       <Header />
       <section className="main">
         <input id="toggle-all" className="toggle-all" type="checkbox" />
@@ -28,7 +28,7 @@ function Todos() {
         </ul>
       </section>
       <Footer />
-    </div>
+    </section>
   );
 }
 
