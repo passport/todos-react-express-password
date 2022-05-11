@@ -14,8 +14,10 @@ console.log(AuthContext);
 function AuthProvider({ children }) {
   let [user, setUser] = React.useState(null);
 
-  let login = (user, callback) => {
+  let login = (user) => {
     console.log('TODO: login...');
+    setUser(user);
+    
     /*
     return fakeAuthProvider.signin(() => {
       setUser(newUser);
@@ -24,8 +26,9 @@ function AuthProvider({ children }) {
     */
   };
 
-  let logout = (callback) => {
+  let logout = () => {
     console.log('TODO: logout...');
+    setUser(null);
     
     /*
     return fakeAuthProvider.signout(() => {
