@@ -10,6 +10,36 @@ let AuthContext = React.createContext(null);
 
 console.log(AuthContext);
 
+
+function AuthProvider({ children }) {
+  let [user, setUser] = React.useState(null);
+
+  let login = (user, callback) => {
+    console.log('TODO: login...');
+    /*
+    return fakeAuthProvider.signin(() => {
+      setUser(newUser);
+      callback();
+    });
+    */
+  };
+
+  let logout = (callback) => {
+    console.log('TODO: logout...');
+    
+    /*
+    return fakeAuthProvider.signout(() => {
+      setUser(null);
+      callback();
+    });
+    */
+  };
+
+  let value = { user, login, logout };
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
+
+
 function useAuthContext() {
   return React.useContext(AuthContext);
 }
@@ -32,7 +62,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-      <AuthContext.Provider value='foo'>
+      <AuthProvider value='foo'>
         <div className="App">
           <ReactRouterDOM.Routes>
             <ReactRouterDOM.Route path="/" element={<Home />} />
@@ -46,7 +76,7 @@ class App extends React.Component {
           <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
           <p>Authentication powered by <a href="https://www.passportjs.org">Passport</a></p>
         </footer>
-      </AuthContext.Provider>
+      </AuthProvider>
       </>
     )
     
