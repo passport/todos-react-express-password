@@ -1,15 +1,14 @@
 function LoginPrompt() {
   let navigate = ReactRouterDOM.useNavigate();
   let auth = useAuthContext();
-  console.log(auth);
   
-  //function handleSubmit(event) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     
     let formData = new FormData(event.currentTarget);
     let username = formData.get('username');
     let password = formData.get('password');
+    
     let response = await fetch('/login/password', {
       method: 'POST',
       headers: {
@@ -17,16 +16,10 @@ function LoginPrompt() {
       },
       body: JSON.stringify({ username, password })
     });
-    
-    console.log(response.ok);
-    console.log(response.status);
-    
-    //const data = await response.json();
-    
-    
-    auth.login({ username: 'alice' });
-    
-    navigate(`/`);
+    // TODO: error handling
+    let json = await response.json();
+    auth.login(json.user);
+    navigate('/');
   }
   
   

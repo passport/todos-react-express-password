@@ -35,13 +35,13 @@ passport.deserializeUser((user, cb) => {
 
 var router = express.Router();
 
-router.post('/login/password', passport.authenticate('local', {
-  successReturnToOrRedirect: '/',
-  failureRedirect: '/login',
-  failureMessage: true
-}), (req, res) => {
-  console.log('TODO: login password');
-  console.log(req.body);
+router.post('/login/password', passport.authenticate('local'), (req, res) => {
+  var user = {
+    id: req.user.id
+  };
+  if (req.user.name) { user.name = req.user.name; }
+  if (req.user.username) { user.username = req.user.username; }
+  res.json({ user });
 });
 
 module.exports = router;
