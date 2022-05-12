@@ -1,8 +1,8 @@
-function Header() {
+function Header({ children }) {
   return (
     <header className="header">
       <h1>todos</h1>
-      <NewTodoForm />
+      {children}
     </header>
   );
 }

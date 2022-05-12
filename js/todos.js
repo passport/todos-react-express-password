@@ -19,6 +19,12 @@ function Todos() {
   }, []);// TODO: put empty array here }, []);
 
   
+  const handleCreate = (todo) => {
+    console.log('oncreate');
+    console.log(todo);
+  };
+  
+  
   if (!auth.user) {
     return <Home />
   }
@@ -43,7 +49,9 @@ function Todos() {
           </li>
         </ul>
       </nav>
-      <Header />
+      <Header>
+        <NewTodoForm onCreate={handleCreate} />
+      </Header>
       <section className="main">
         <input id="toggle-all" className="toggle-all" type="checkbox" />
         <label htmlFor="toggle-all">Mark all as complete</label>
