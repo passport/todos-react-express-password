@@ -32,8 +32,11 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "connect-sqlite3": "^0.9.13",
+    "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-session": "^1.17.2",
     "morgan": "~1.9.1",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",

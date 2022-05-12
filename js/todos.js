@@ -1,8 +1,19 @@
 function Todos() {
   let auth = useAuthContext();
-  console.log('X');
-  console.log(auth);
+  const [todos, setTodos] = React.useState([]);
   
+  
+  React.useEffect(() => {
+    console.log('FETCHING TODOS...');
+    
+    if (!auth.user) { return; }
+    
+    async function fetchData() {
+      let response = await fetch('/todos');
+    }
+    fetchData();
+  });// TODO: put empty array here }, []);
+
   
   if (!auth.user) {
     return <Home />
