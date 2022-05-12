@@ -29,8 +29,21 @@ function Todos() {
     });
     // TODO: error handling
     const json = await response.json();
-    setTodos((todos) => todos.concat([json]));
+    setTodos(todos => todos.concat([json]));
     setNewTodo('')
+  };
+  
+  const handleToggle = async (todo) => {
+    const response = await fetch(todo.url, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ completed: todo.completed })
+    });
+    // TODO: error handling
+    const json = await response.json();
+    setTodos(todos => todos.map(i => i.id !== json.id ? i : json));
   };
   
   
@@ -58,7 +71,7 @@ function Todos() {
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
           {todos.map((todo) =>
-            <TodoItem key={todo.id.toString()} value={todo} />
+            <TodoItem key={todo.id.toString()} value={todo} onToggle={handleToggle} />
           )}
         </ul>
       </section>
