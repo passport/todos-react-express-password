@@ -13,7 +13,7 @@ function TodoItem({ value, onToggle }) {
   };
 
   return (
-    <li>
+    <li className={value.completed ? 'completed' : ''}>
       <div className="view">
         <input className="toggle" type="checkbox" checked={value.completed ? true : false} onChange={handleToggle} />
         <label>{value.title}</label>
