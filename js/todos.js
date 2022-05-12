@@ -51,7 +51,7 @@ function Todos() {
         </ul>
       </nav>
       <Header>
-        <NewTodoForm value={newTodo ? newTodo.title : ''} onChange={todo => setNewTodo(todo)} onSubmit={handleCreate} />
+        <NewTodoInput value={newTodo ? newTodo.title : ''} onChange={todo => setNewTodo(todo)} onSubmit={handleCreate} />
       </Header>
       <section className="main">
         <input id="toggle-all" className="toggle-all" type="checkbox" />
