@@ -44,4 +44,32 @@ router.post('/', passport.authenticate('session'), (req, res, next) => {
   });
 });
 
+router.patch('/:id', passport.authenticate('session'), (req, res, next) => {
+  var assigns = [];
+  var values = [];
+  if ('title' in req.body) {
+    assigns.push('title = ?');
+    values.push(req.body.title);
+  }
+  if ('completed' in req.body) {
+    assigns.push('completed = ?');
+    values.push(req.body.completed);
+  }
+  
+  db.all('UPDATE todos SET ' + assigns.join(', ') + ' WHERE id = ? AND owner_id = ? RETURNING *', values.concat([
+    req.params.id,
+    req.user.id
+  ]), function(err, rows) {
+    if (err) { return next(err); }
+    var row = rows[0];
+    var todo = {
+      id: row.id,
+      title: row.title,
+      completed: row.completed == 1 ? true : false,
+      url: '/todos/' + row.id
+    }
+    return res.json(todo);
+  });
+});
+
 module.exports = router;
