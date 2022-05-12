@@ -27,7 +27,7 @@ function SignupPrompt() {
     <section className="prompt">
       <h3>todos</h3>
       <h1>Sign up</h1>
-      <form action="/signup" method="post" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <section>
           <label htmlFor="username">Username</label>
           <input id="username" name="username" type="text" autoComplete="username" required />
