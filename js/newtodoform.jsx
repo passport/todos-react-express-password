@@ -1,20 +1,10 @@
 'use strict';
 
-function NewTodoForm({ onCreate }) {
+function NewTodoForm({ value, onChange, onSubmit }) {
   
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    
-    const formData = new FormData(event.currentTarget);
-    const title = formData.get('title');
-    onCreate({ title });
-    // TODO: error handling
-    // TODO: clear form
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <input className="new-todo" name="title" placeholder="What needs to be done?" autoFocus />
+    <form onSubmit={event => { event.preventDefault(); onSubmit(); }}>
+      <input className="new-todo" name="title" value={value} onChange={event => onChange({ title: event.target.value })} placeholder="What needs to be done?" autoFocus />
     </form>
   );
 }

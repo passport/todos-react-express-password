@@ -1,6 +1,7 @@
 function Todos() {
-  let auth = useAuthContext();
+  const auth = useAuthContext();
   const [todos, setTodos] = React.useState([]);
+  const [newTodo, setNewTodo] = React.useState();
   
   
   React.useEffect(() => {
@@ -17,36 +18,25 @@ function Todos() {
     }
     fetchData();
   }, []);// TODO: put empty array here }, []);
-
   
-  const handleCreate = async (todo) => {
-    console.log('oncreate');
-    console.log(todo);
-    
+  const handleCreate = async () => {
     const response = await fetch('/todos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(todo)
+      body: JSON.stringify(newTodo)
     });
     // TODO: error handling
-    let json = await response.json();
-    console.log(json);
+    const json = await response.json();
+    setTodos((todos) => todos.concat([json]));
+    setNewTodo('')
   };
   
   
   if (!auth.user) {
     return <Home />
   }
-  
-  /*
-  var user = this.props.user;
-  if (!user) {
-    return <Welcome />
-    //return <LoginPrompt />
-  }
-  */
   
   return (
     <section className="todoapp">
@@ -61,7 +51,7 @@ function Todos() {
         </ul>
       </nav>
       <Header>
-        <NewTodoForm onCreate={handleCreate} />
+        <NewTodoForm value={newTodo ? newTodo.title : ''} onChange={todo => setNewTodo(todo)} onSubmit={handleCreate} />
       </Header>
       <section className="main">
         <input id="toggle-all" className="toggle-all" type="checkbox" />
@@ -72,7 +62,9 @@ function Todos() {
           )}
         </ul>
       </section>
-      <Footer />
+      {todos.length > 0 &&
+        <Footer />
+      }
     </section>
   );
 }
