@@ -10,9 +10,13 @@ function Todos() {
     
     async function fetchData() {
       let response = await fetch('/todos');
+      // TODO: error handling
+      let json = await response.json();
+      console.log(json);
+      setTodos(json);
     }
     fetchData();
-  });// TODO: put empty array here }, []);
+  }, []);// TODO: put empty array here }, []);
 
   
   if (!auth.user) {
@@ -44,8 +48,9 @@ function Todos() {
         <input id="toggle-all" className="toggle-all" type="checkbox" />
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
-          <TodoItem value="Taste JavaScript" />
-          <TodoItem value="Buy a unicorn" />
+          {todos.map((todo) =>
+            <TodoItem key={todo.id.toString()} value={todo} />
+          )}
         </ul>
       </section>
       <Footer />
