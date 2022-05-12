@@ -19,9 +19,20 @@ function Todos() {
   }, []);// TODO: put empty array here }, []);
 
   
-  const handleCreate = (todo) => {
+  const handleCreate = async (todo) => {
     console.log('oncreate');
     console.log(todo);
+    
+    const response = await fetch('/todos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(todo)
+    });
+    // TODO: error handling
+    let json = await response.json();
+    console.log(json);
   };
   
   
