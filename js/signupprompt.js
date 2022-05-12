@@ -1,29 +1,25 @@
 function SignupPrompt() {
-  let navigate = ReactRouterDOM.useNavigate();
+  const navigate = ReactRouterDOM.useNavigate();
+  const auth = useAuthContext();
   
-  //function handleSubmit(event) {
   const handleSubmit = async (event) => {
-    console.log('handle submit...');
     event.preventDefault();
     
+    const formData = new FormData(event.currentTarget);
+    const username = formData.get('username');
+    const password = formData.get('password');
     
-    const response = await fetch('/login/password', {
+    const response = await fetch('/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        title: "My post title",
-        body: "My post content."
-      })
+      body: JSON.stringify({ username, password })
     });
-    
-    console.log(response.ok);
-    console.log(response.status);
-    
-    //const data = await response.json();
-    
-    navigate(`/`);
+    // TODO: error handling
+    const json = await response.json();
+    auth.login(json.user);
+    navigate('/');
   }
   
   
