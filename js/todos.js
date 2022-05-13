@@ -31,8 +31,8 @@ function Todos() {
       body: JSON.stringify({ title: newTitle })
     });
     // TODO: error handling
-    const json = await response.json();
-    setTodos(todos => todos.concat([json]));
+    const todo = await response.json();
+    setTodos(todos => todos.concat([todo]));
     setNewTitle('');
   };
   
@@ -45,18 +45,18 @@ function Todos() {
       body: JSON.stringify({ title: todo.title })
     });
     // TODO: error handling
-    const json = await response.json();
+    const updatedTodo = await response.json();
     setEditingTodo(null);
-    setTodos(todos => todos.map(i => i.id !== json.id ? i : json));
+    setTodos(todos => todos.map(todo => todo.id !== updatedTodo.id ? todo : updatedTodo));
   };
   
-  const handleDestroy = async (todo) => {
-    const response = await fetch(todo.url, {
+  const handleDestroy = async (deletedTodo) => {
+    const response = await fetch(deletedTodo.url, {
       method: 'DELETE'
     });
     // TODO: error handling
     setEditingTodo(null);
-    setTodos(todos => todos.filter(i => i.id !== todo.id));
+    setTodos(todos => todos.filter(todo => todo.id !== deletedTodo.id));
   };
   
   const handleToggle = async (todo) => {
@@ -68,8 +68,8 @@ function Todos() {
       body: JSON.stringify({ completed: todo.completed })
     });
     // TODO: error handling
-    const json = await response.json();
-    setTodos(todos => todos.map(i => i.id !== json.id ? i : json));
+    const updatedTodo = await response.json();
+    setTodos(todos => todos.map(todo => todo.id !== updatedTodo.id ? todo : updatedTodo));
   };
   
   const handleToggleAll = async (event) => {
@@ -83,6 +83,13 @@ function Todos() {
     })))
     .then(responses => Promise.all(responses.map(response => response.json())))
     .then(setTodos);
+  };
+  
+  const handleClearCompleted = async (event) => {
+    console.log('clear completed...')
+    
+    //var completed = todos.filter(f)
+    
   };
   
   
@@ -124,7 +131,7 @@ function Todos() {
         </section>
       }
       {todos.length > 0 &&
-        <Footer count={activeCount} completed={completedCount > 0} />
+        <Footer count={activeCount} completed={completedCount > 0} onClearCompleted={handleClearCompleted} />
       }
     </section>
   );

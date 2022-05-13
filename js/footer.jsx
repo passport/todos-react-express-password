@@ -1,4 +1,4 @@
-function Footer({ count, completed }) {
+function Footer({ count, completed, onClearCompleted }) {
   return (
     <footer className="footer">
       <span className="todo-count"><strong>{count}</strong> {count == 1 ? 'item': 'items'} left</span>
@@ -14,7 +14,7 @@ function Footer({ count, completed }) {
         </li>
       </ul>
       {completed &&
-        <button className="clear-completed">Clear completed</button>
+        <button className="clear-completed" onSubmit={onClearCompleted}>Clear completed</button>
       }
     </footer>
   );
