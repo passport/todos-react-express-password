@@ -49,6 +49,7 @@ function TodoItem({ value, editing, onToggle, onUpdate, onDestroy, onBeginEditin
             onChange={event => { setEditedTitle(event.target.value); }}
             onKeyDown={handleKeyDown}
             onBlur={handleSubmit}
+            autoFocus
           />
       }
     </li>
