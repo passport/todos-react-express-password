@@ -53,7 +53,7 @@ router.patch('/:id', passport.authenticate('session'), (req, res, next) => {
   }
   if ('completed' in req.body) {
     assigns.push('completed = ?');
-    values.push(req.body.completed);
+    values.push(req.body.completed === true ? 1 : null);
   }
   
   db.all('UPDATE todos SET ' + assigns.join(', ') + ' WHERE id = ? AND owner_id = ? RETURNING *', values.concat([
