@@ -6,11 +6,6 @@ function TodoItem({ value, editing, onToggle, onUpdate, onDestroy, onBeginEditin
   const ENTER_KEY = 13;
   const ESCAPE_KEY = 27;
   
-  const handleToggle = (event) => {
-    value.completed = !value.completed;
-    onToggle(value);
-  };
-  
   const handleKeyDown = (event) => {
     switch (event.keyCode) {
     case ENTER_KEY:
@@ -31,6 +26,11 @@ function TodoItem({ value, editing, onToggle, onUpdate, onDestroy, onBeginEditin
     } else {
       onDestroy(value);
     }
+  };
+  
+  const handleToggle = (event) => {
+    value.completed = !value.completed;
+    onToggle(value);
   };
   
   return (
