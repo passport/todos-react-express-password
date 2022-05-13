@@ -85,11 +85,12 @@ function Todos() {
     .then(setTodos);
   };
   
-  const handleClearCompleted = async (event) => {
-    console.log('clear completed...')
-    
-    //var completed = todos.filter(f)
-    
+  const handleClearCompleted = async () => {
+    var completed = todos.filter(todo => todo.completed);
+    Promise.all(completed.map(todo => fetch(todo.url, {
+      method: 'DELETE'
+    })))
+    .then(() => setTodos(todos.filter(todo => completed.indexOf(todo) == -1)));
   };
   
   

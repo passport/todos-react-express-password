@@ -14,7 +14,7 @@ function Footer({ count, completed, onClearCompleted }) {
         </li>
       </ul>
       {completed &&
-        <button className="clear-completed" onSubmit={onClearCompleted}>Clear completed</button>
+        <button className="clear-completed" onClick={onClearCompleted}>Clear completed</button>
       }
     </footer>
   );
