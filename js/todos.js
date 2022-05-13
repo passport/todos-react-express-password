@@ -124,7 +124,7 @@ function Todos() {
         </section>
       }
       {todos.length > 0 &&
-        <Footer count={activeCount} />
+        <Footer count={activeCount} completed={completedCount > 0} />
       }
     </section>
   );

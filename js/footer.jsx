@@ -1,4 +1,4 @@
-function Footer({ count }) {
+function Footer({ count, completed }) {
   return (
     <footer className="footer">
       <span className="todo-count"><strong>{count}</strong> {count == 1 ? 'item': 'items'} left</span>
@@ -13,7 +13,9 @@ function Footer({ count }) {
           <a href="#/completed">Completed</a>
         </li>
       </ul>
-      <button className="clear-completed">Clear completed</button>
+      {completed &&
+        <button className="clear-completed">Clear completed</button>
+      }
     </footer>
   );
 }
