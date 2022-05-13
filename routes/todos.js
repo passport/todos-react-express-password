@@ -2,9 +2,6 @@ var express = require('express');
 var passport = require('passport');
 var db = require('../db');
 
-function fetchTodos(req, res, next) {
-  
-}
 
 var router = express.Router();
 
@@ -13,7 +10,6 @@ router.get('/', passport.authenticate('session'), (req, res, next) => {
     req.user.id
   ], function(err, rows) {
     if (err) { return next(err); }
-    
     var todos = rows.map(function(row) {
       return {
         id: row.id,
@@ -33,7 +29,6 @@ router.post('/', passport.authenticate('session'), (req, res, next) => {
     req.body.completed == true ? 1 : null
   ], function(err) {
     if (err) { return next(err); }
-    
     var todo = {
       id: this.lastID,
       title: req.body.title,
@@ -69,6 +64,16 @@ router.patch('/:id', passport.authenticate('session'), (req, res, next) => {
       url: '/todos/' + row.id
     }
     return res.json(todo);
+  });
+});
+
+router.delete('/:id', passport.authenticate('session'), (req, res, next) => {
+  db.run('DELETE FROM todos WHERE id = ? AND owner_id = ?', [
+    req.params.id,
+    req.user.id
+  ], function(err) {
+    if (err) { return next(err); }
+    return res.end();
   });
 });
 

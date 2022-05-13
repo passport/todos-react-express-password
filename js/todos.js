@@ -61,6 +61,15 @@ function Todos() {
     setTodos(todos => todos.map(i => i.id !== json.id ? i : json));
   };
   
+  const handleDestroy = async (todo) => {
+    const response = await fetch(todo.url, {
+      method: 'DELETE'
+    });
+    // TODO: error handling
+    setEditingTodo(null);
+    setTodos(todos => todos.filter(i => i.id !== todo.id));
+  }
+  
   
   if (!auth.user) {
     return <Home />
@@ -90,6 +99,7 @@ function Todos() {
                       value={todo}
                       onToggle={handleToggle}
                       onUpdate={handleUpdate}
+                      onDestroy={handleDestroy}
                       onBeginEditing={todo => setEditingTodo(todo)}
                       onCancelEditing={todo => setEditingTodo(null)}
                       editing={(editingTodo && editingTodo.id) === todo.id} />

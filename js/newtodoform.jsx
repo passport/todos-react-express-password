@@ -14,7 +14,7 @@ function NewTodoInput({ value, onChange, onSubmit }) {
   
   return (
     <input className="new-todo"
-      name="title" value={value} placeholder="What needs to be done?"
+      value={value} placeholder="What needs to be done?"
       onChange={event => onChange(event.target.value)}
       onKeyDown={handleKeyDown}
       autoFocus

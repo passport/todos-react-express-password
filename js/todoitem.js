@@ -1,6 +1,6 @@
 'use strict';
 
-function TodoItem({ value, editing, onToggle, onBeginEditing, onCancelEditing, onUpdate }) {
+function TodoItem({ value, editing, onToggle, onBeginEditing, onCancelEditing, onUpdate, onDestroy }) {
   // WIP: add editing state here and finish implementing editing
   
   const [editedTitle, setEditedTitle] = React.useState(value.title);
@@ -30,16 +30,13 @@ function TodoItem({ value, editing, onToggle, onBeginEditing, onCancelEditing, o
   };
   
   const handleSubmit = (event) => {
-    console.log('submit...')
-    
     var title = editedTitle.trim();
     if (title) {
       value.title = title;
       onUpdate(value);
     } else {
-      
+      onDestroy(value);
     }
-    
   };
   
   const handleClick = async (event) => {
@@ -58,7 +55,8 @@ function TodoItem({ value, editing, onToggle, onBeginEditing, onCancelEditing, o
             <label onDoubleClick={handleDoubleClick}>{value.title}</label>
             <button className="destroy" onClick={handleClick}></button>
           </div>
-        : <input className="edit" value={editedTitle}
+        : <input className="edit"
+            value={editedTitle}
             onChange={event => { setEditedTitle(event.target.value); }}
             onKeyDown={handleKeyDown}
             onBlur={handleSubmit}
