@@ -1,8 +1,6 @@
 'use strict';
 
-function TodoItem({ value, editing, onToggle, onBeginEditing, onCancelEditing, onUpdate, onDestroy }) {
-  // WIP: add editing state here and finish implementing editing
-  
+function TodoItem({ value, editing, onToggle, onUpdate, onDestroy, onBeginEditing, onCancelEditing }) {
   const [editedTitle, setEditedTitle] = React.useState(value.title);
   
   const ENTER_KEY = 13;
@@ -11,10 +9,6 @@ function TodoItem({ value, editing, onToggle, onBeginEditing, onCancelEditing, o
   const handleToggle = (event) => {
     value.completed = !value.completed;
     onToggle(value);
-  };
-  
-  const handleDoubleClick = (event) => {
-    onBeginEditing(value);
   };
   
   const handleKeyDown = (event) => {
@@ -39,10 +33,6 @@ function TodoItem({ value, editing, onToggle, onBeginEditing, onCancelEditing, o
     }
   };
   
-  const handleClick = async (event) => {
-    onDestroy(value);
-  };
-
   return (
     <li className={classNames({
       completed: value.completed,
@@ -51,8 +41,8 @@ function TodoItem({ value, editing, onToggle, onBeginEditing, onCancelEditing, o
       {!editing
         ? <div className="view">
             <input className="toggle" type="checkbox" checked={value.completed ? true : false} onChange={handleToggle} />
-            <label onDoubleClick={handleDoubleClick}>{value.title}</label>
-            <button className="destroy" onClick={handleClick}></button>
+            <label onDoubleClick={event => onBeginEditing(value)}>{value.title}</label>
+            <button className="destroy" onClick={event => onDestroy(value)}></button>
           </div>
         : <input className="edit"
             value={editedTitle}
