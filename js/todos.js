@@ -4,6 +4,8 @@ function Todos() {
   const [editingTodo, setEditingTodo] = React.useState(null);
   const [newTitle, setNewTitle] = React.useState('');
   
+  const activeCount = todos.reduce((c, i) => !i.completed ? c + 1 : c, 0);
+  const completedCount = todos.length - activeCount;
   
   React.useEffect(() => {
     console.log('FETCHING TODOS...');
@@ -55,7 +57,7 @@ function Todos() {
     // TODO: error handling
     setEditingTodo(null);
     setTodos(todos => todos.filter(i => i.id !== todo.id));
-  }
+  };
   
   const handleToggle = async (todo) => {
     const response = await fetch(todo.url, {
@@ -68,6 +70,19 @@ function Todos() {
     // TODO: error handling
     const json = await response.json();
     setTodos(todos => todos.map(i => i.id !== json.id ? i : json));
+  };
+  
+  const handleToggleAll = async (event) => {
+    // TODO: error handling
+    Promise.all(todos.map(todo => fetch(todo.url, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ completed: event.target.checked })
+    })))
+    .then(responses => Promise.all(responses.map(response => response.json())))
+    .then(setTodos);
   };
   
   
@@ -92,7 +107,7 @@ function Todos() {
       </Header>
       {todos.length > 0 &&
         <section className="main">
-          <input id="toggle-all" className="toggle-all" type="checkbox" />
+          <input id="toggle-all" className="toggle-all" type="checkbox" checked={activeCount == 0 ? true : false} onChange={handleToggleAll} />
           <label htmlFor="toggle-all">Mark all as complete</label>
           <ul className="todo-list">
             {todos.map((todo) =>
