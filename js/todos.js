@@ -124,7 +124,7 @@ function Todos() {
         </section>
       }
       {todos.length > 0 &&
-        <Footer />
+        <Footer count={activeCount} />
       }
     </section>
   );
