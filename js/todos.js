@@ -2,7 +2,7 @@ function Todos() {
   const auth = useAuthContext();
   const [todos, setTodos] = React.useState([]);
   const [newTodo, setNewTodo] = React.useState();
-  const [editingTodo, setEditingTodo] = React.useState();
+  const [editingTodo, setEditingTodo] = React.useState(null);
   
   
   React.useEffect(() => {
@@ -47,6 +47,20 @@ function Todos() {
     setTodos(todos => todos.map(i => i.id !== json.id ? i : json));
   };
   
+  const handleUpdate = async (todo) => {
+    const response = await fetch(todo.url, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ title: todo.title })
+    });
+    // TODO: error handling
+    const json = await response.json();
+    setEditingTodo(null);
+    setTodos(todos => todos.map(i => i.id !== json.id ? i : json));
+  };
+  
   
   if (!auth.user) {
     return <Home />
@@ -72,9 +86,12 @@ function Todos() {
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
           {todos.map((todo) =>
-            <TodoItem key={todo.id.toString()} value={todo}
+            <TodoItem key={todo.id.toString()}
+                      value={todo}
                       onToggle={handleToggle}
-                      onEdit={todo => setEditingTodo(todo)}
+                      onUpdate={handleUpdate}
+                      onBeginEditing={todo => setEditingTodo(todo)}
+                      onCancelEditing={todo => setEditingTodo(null)}
                       editing={(editingTodo && editingTodo.id) === todo.id} />
           )}
         </ul>

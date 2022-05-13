@@ -1,6 +1,6 @@
 'use strict';
 
-function TodoItem({ value, editing, onToggle, onEdit }) {
+function TodoItem({ value, editing, onToggle, onBeginEditing, onCancelEditing, onUpdate }) {
   // WIP: add editing state here and finish implementing editing
   
   const [editedTitle, setEditedTitle] = React.useState(value.title);
@@ -14,25 +14,32 @@ function TodoItem({ value, editing, onToggle, onEdit }) {
   };
   
   const handleDoubleClick = (event) => {
-    console.log('editing...')
-    onEdit(value);
+    onBeginEditing(value);
   };
   
   const handleKeyDown = (event) => {
-    console.log('key down');
-    console.log(event.keyCode);
-    console.log(event.which)
-    
-    /*
-    if (event.keyCode !== ENTER_KEY) { return; }
-    var value = event.target.value.trim();
-    if (!value) { return; }
-    onSubmit();
-    */
+    switch (event.keyCode) {
+    case ENTER_KEY:
+      handleSubmit(event);
+      break;
+    case ESCAPE_KEY:
+      setEditedTitle(value.title);
+      onCancelEditing(value);
+      break;
+    }
   };
   
-  const handleBlur = (event) => {
+  const handleSubmit = (event) => {
     console.log('submit...')
+    
+    var title = editedTitle.trim();
+    if (title) {
+      value.title = title;
+      onUpdate(value);
+    } else {
+      
+    }
+    
   };
   
   const handleClick = async (event) => {
@@ -54,7 +61,7 @@ function TodoItem({ value, editing, onToggle, onEdit }) {
         : <input className="edit" value={editedTitle}
             onChange={event => { setEditedTitle(event.target.value); }}
             onKeyDown={handleKeyDown}
-            onBlur={handleBlur}
+            onBlur={handleSubmit}
           />
       }
     </li>
