@@ -1,4 +1,5 @@
 function Todos() {
+  const location = ReactRouterDOM.useLocation();
   const auth = useAuthContext();
   const [todos, setTodos] = React.useState([]);
   const [editingTodo, setEditingTodo] = React.useState(null);
@@ -6,6 +7,15 @@ function Todos() {
   
   const activeCount = todos.reduce((c, i) => !i.completed ? c + 1 : c, 0);
   const completedCount = todos.length - activeCount;
+  let filtered = todos;
+  switch (location.pathname) {
+  case '/active':
+    filtered = todos.filter(todo => !todo.completed);
+    break;
+  case '/completed':
+    filtered = todos.filter(todo => todo.completed);
+    break;
+  }
   
   React.useEffect(() => {
     console.log('FETCHING TODOS...');
@@ -118,7 +128,7 @@ function Todos() {
           <input id="toggle-all" className="toggle-all" type="checkbox" checked={activeCount == 0 ? true : false} onChange={handleToggleAll} />
           <label htmlFor="toggle-all">Mark all as complete</label>
           <ul className="todo-list">
-            {todos.map((todo) =>
+            {filtered.map((todo) =>
               <TodoItem key={todo.id.toString()}
                         value={todo}
                         onToggle={handleToggle}
