@@ -6,8 +6,8 @@ function NewTodoInput({ value, onChange, onSubmit }) {
   const handleKeyDown = (event) => {
     switch (event.keyCode) {
     case ENTER_KEY:
-      var value = event.target.value.trim();
-      if (value) { onSubmit(); }
+      const val = event.target.value.trim();
+      if (val) { onSubmit(); }
       break;
     }
   };
@@ -15,7 +15,7 @@ function NewTodoInput({ value, onChange, onSubmit }) {
   return (
     <input className="new-todo"
       name="title" value={value} placeholder="What needs to be done?"
-      onChange={event => onChange({ title: event.target.value })}
+      onChange={event => onChange(event.target.value)}
       onKeyDown={handleKeyDown}
       autoFocus
     />

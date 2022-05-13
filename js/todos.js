@@ -1,8 +1,8 @@
 function Todos() {
   const auth = useAuthContext();
   const [todos, setTodos] = React.useState([]);
-  const [newTodo, setNewTodo] = React.useState();
   const [editingTodo, setEditingTodo] = React.useState(null);
+  const [newTitle, setNewTitle] = React.useState('');
   
   
   React.useEffect(() => {
@@ -26,12 +26,12 @@ function Todos() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(newTodo)
+      body: JSON.stringify({ title: newTitle })
     });
     // TODO: error handling
     const json = await response.json();
     setTodos(todos => todos.concat([json]));
-    setNewTodo('')
+    setNewTitle('');
   };
   
   const handleToggle = async (todo) => {
@@ -79,7 +79,7 @@ function Todos() {
         </ul>
       </nav>
       <Header>
-        <NewTodoInput value={newTodo ? newTodo.title : ''} onChange={todo => setNewTodo(todo)} onSubmit={handleCreate} />
+        <NewTodoInput value={newTitle} onChange={value => setNewTitle(value)} onSubmit={handleCreate} />
       </Header>
       <section className="main">
         <input id="toggle-all" className="toggle-all" type="checkbox" />
