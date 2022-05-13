@@ -1,16 +1,18 @@
 function Footer({ count, completed, onClearCompleted }) {
+  const location = ReactRouterDOM.useLocation();
+  
   return (
     <footer className="footer">
       <span className="todo-count"><strong>{count}</strong> {count == 1 ? 'item': 'items'} left</span>
       <ul className="filters">
         <li>
-          <a className="selected" href="#/">All</a>
+          <ReactRouterDOM.Link className={classNames({ selected: location.pathname == '/' })} to="/">All</ReactRouterDOM.Link>
         </li>
         <li>
-          <a href="#/active">Active</a>
+          <ReactRouterDOM.Link className={classNames({ selected: location.pathname == '/active' })} to="/active">Active</ReactRouterDOM.Link>
         </li>
         <li>
-          <a href="#/completed">Completed</a>
+          <ReactRouterDOM.Link className={classNames({ selected: location.pathname == '/completed' })} to="/completed">Completed</ReactRouterDOM.Link>
         </li>
       </ul>
       {completed &&
