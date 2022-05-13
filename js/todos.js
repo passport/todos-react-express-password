@@ -34,19 +34,6 @@ function Todos() {
     setNewTitle('');
   };
   
-  const handleToggle = async (todo) => {
-    const response = await fetch(todo.url, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ completed: todo.completed })
-    });
-    // TODO: error handling
-    const json = await response.json();
-    setTodos(todos => todos.map(i => i.id !== json.id ? i : json));
-  };
-  
   const handleUpdate = async (todo) => {
     const response = await fetch(todo.url, {
       method: 'PATCH',
@@ -69,6 +56,19 @@ function Todos() {
     setEditingTodo(null);
     setTodos(todos => todos.filter(i => i.id !== todo.id));
   }
+  
+  const handleToggle = async (todo) => {
+    const response = await fetch(todo.url, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ completed: todo.completed })
+    });
+    // TODO: error handling
+    const json = await response.json();
+    setTodos(todos => todos.map(i => i.id !== json.id ? i : json));
+  };
   
   
   if (!auth.user) {
