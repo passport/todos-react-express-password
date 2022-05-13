@@ -40,8 +40,7 @@ function TodoItem({ value, editing, onToggle, onBeginEditing, onCancelEditing, o
   };
   
   const handleClick = async (event) => {
-    console.log('destroy click')
-    event.preventDefault();
+    onDestroy(value);
   };
 
   return (
