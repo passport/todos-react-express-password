@@ -2,6 +2,7 @@ function Todos() {
   const auth = useAuthContext();
   const [todos, setTodos] = React.useState([]);
   const [newTodo, setNewTodo] = React.useState();
+  const [editingTodo, setEditingTodo] = React.useState();
   
   
   React.useEffect(() => {
@@ -71,7 +72,10 @@ function Todos() {
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
           {todos.map((todo) =>
-            <TodoItem key={todo.id.toString()} value={todo} onToggle={handleToggle} />
+            <TodoItem key={todo.id.toString()} value={todo}
+                      onToggle={handleToggle}
+                      onEdit={todo => setEditingTodo(todo)}
+                      editing={(editingTodo && editingTodo.id) === todo.id} />
           )}
         </ul>
       </section>

@@ -1,10 +1,15 @@
 'use strict';
 
-function TodoItem({ value, onToggle }) {
+function TodoItem({ value, editing, onToggle, onEdit }) {
   
   const handleToggle = (event) => {
     value.completed = !value.completed;
     onToggle(value);
+  };
+  
+  const handleEdit = (event) => {
+    console.log('editing...')
+    onEdit(value);
   };
   
   const handleClick = async (event) => {
@@ -13,13 +18,18 @@ function TodoItem({ value, onToggle }) {
   };
 
   return (
-    <li className={value.completed ? 'completed' : ''}>
-      <div className="view">
-        <input className="toggle" type="checkbox" checked={value.completed ? true : false} onChange={handleToggle} />
-        <label>{value.title}</label>
-        <button className="destroy" onClick={handleClick}></button>
-      </div>
-      <input className="edit" defaultValue="Create a TodoMVC template" />
+    <li className={classNames({
+      completed: value.completed,
+      editing: editing
+    })}>
+      {!editing
+        ? <div className="view">
+            <input className="toggle" type="checkbox" checked={value.completed ? true : false} onChange={handleToggle} />
+            <label onDoubleClick={handleEdit}>{value.title}</label>
+            <button className="destroy" onClick={handleClick}></button>
+          </div>
+        : <input className="edit" defaultValue={value.title} />
+      }
     </li>
   );
 }
