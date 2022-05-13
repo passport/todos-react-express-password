@@ -4,10 +4,12 @@ function NewTodoInput({ value, onChange, onSubmit }) {
   const ENTER_KEY = 13;
   
   const handleKeyDown = (event) => {
-    if (event.keyCode !== ENTER_KEY) { return; }
-    var value = event.target.value.trim();
-    if (!value) { return; }
-    onSubmit();
+    switch (event.keyCode) {
+    case ENTER_KEY:
+      var value = event.target.value.trim();
+      if (value) { onSubmit(); }
+      break;
+    }
   };
   
   return (
