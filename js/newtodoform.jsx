@@ -13,7 +13,12 @@ function NewTodoInput({ value, onChange, onSubmit }) {
   };
   
   return (
-    <input className="new-todo" name="title" value={value} onChange={event => onChange({ title: event.target.value })} onKeyDown={handleKeyDown} placeholder="What needs to be done?" autoFocus />
+    <input className="new-todo"
+      name="title" value={value} placeholder="What needs to be done?"
+      onChange={event => onChange({ title: event.target.value })}
+      onKeyDown={handleKeyDown}
+      autoFocus
+    />
   );
 }
 
