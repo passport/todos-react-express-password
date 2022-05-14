@@ -12,10 +12,10 @@ console.log(AuthContext);
 
 
 function AuthProvider({ children }) {
-  let [user, setUser] = React.useState(null);
+  const [user, setUser] = React.useState(null);
   //let [user, setUser] = React.useState({ id: 1, username: 'alice' });
 
-  let login = (user) => {
+  const login = (user) => {
     console.log('TODO: login...');
     setUser(user);
     
@@ -27,7 +27,7 @@ function AuthProvider({ children }) {
     */
   };
 
-  let logout = async () => {
+  const logout = async () => {
     console.log('TODO: logout...');
     
     const response = await fetch('/logout', {
