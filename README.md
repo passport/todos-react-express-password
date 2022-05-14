@@ -14,9 +14,9 @@ strategy.
 This app is a JavaScript application with a backend, in which the UI executes in
 the browser while data management and persistence is handled by the server.
 
-This app is built using React for the UI.  The backend is built using the
-Express web framework.  Data is persisted to a [SQLite](https://www.sqlite.org/)
-database.
+This app is built using React for the UI and [React Router](https://reactrouter.com/)
+for routing.  The backend is built using the Express web framework.  Data is
+persisted to a [SQLite](https://www.sqlite.org/) database.
 
 When a user first arrives at this app, they are prompted to sign in.  The React
 app prompts the user for their username and password and makes an API call to
