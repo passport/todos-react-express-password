@@ -8,17 +8,7 @@ function SignupPrompt() {
     const formData = new FormData(event.currentTarget);
     const username = formData.get('username');
     const password = formData.get('password');
-    
-    const response = await fetch('/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ username, password })
-    });
-    // TODO: error handling
-    const json = await response.json();
-    auth.login(json.user);
+    await auth.signUp(username, password);
     navigate('/');
   }
   

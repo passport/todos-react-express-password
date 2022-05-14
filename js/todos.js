@@ -103,9 +103,8 @@ function Todos() {
     .then(() => setTodos(todos.filter(todo => completed.indexOf(todo) == -1)));
   };
   
-  const handleLogout = async (event) => {
-    console.log('logout...');
-    auth.logout();
+  const handleLogOut = async (event) => {
+    auth.logOut();
   };
   
   
@@ -119,7 +118,7 @@ function Todos() {
         <ul>
           <li className="user">{auth.user.username}</li>
           <li>
-            <button className="logout" onClick={handleLogout}>Sign out</button>
+            <button className="logout" onClick={handleLogOut}>Sign out</button>
           </li>
         </ul>
       </nav>

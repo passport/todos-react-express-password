@@ -8,7 +8,7 @@ function LoginPrompt() {
     const formData = new FormData(event.currentTarget);
     const username = formData.get('username');
     const password = formData.get('password');
-    await auth.login(username, password);
+    await auth.logIn(username, password);
     navigate('/');
   }
   

@@ -15,7 +15,7 @@ function AuthProvider({ children }) {
   const [user, setUser] = React.useState(null);
   //let [user, setUser] = React.useState({ id: 1, username: 'alice' });
 
-  const login = async (username, password) => {
+  const logIn = async (username, password) => {
     const response = await fetch('/login/password', {
       method: 'POST',
       headers: {
@@ -28,15 +28,28 @@ function AuthProvider({ children }) {
     setUser(user);
   };
 
-  const logout = async () => {
+  const logOut = async () => {
     const response = await fetch('/logout', {
       method: 'POST'
     });
     // TODO: error handling
     setUser(null);
   };
+  
+  const signUp = async (username, password) => {
+    const response = await fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    });
+    // TODO: error handling
+    const { user } = await response.json();
+    setUser(user);
+  };
 
-  const value = { user, login, logout };
+  const value = { user, logIn, logOut, signUp };
   return (
     <AuthContext.Provider value={value}>
       {children}
