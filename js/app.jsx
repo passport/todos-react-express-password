@@ -15,6 +15,28 @@ function AuthProvider({ children }) {
   const [user, setUser] = React.useState(null);
   //let [user, setUser] = React.useState({ id: 1, username: 'alice' });
 
+  React.useEffect(() => {
+    console.log('LOAD SESSION...');
+    
+    
+    async function fetchData() {
+      let response = await fetch('/session');
+      // TODO: error handling
+      if (!response.ok) {
+        return;
+      }
+      
+      console.log(response.ok);
+      console.log(response.status);
+      
+      const { user } = await response.json();
+      setUser(user);
+    }
+    fetchData();
+    
+  }, []);
+
+
   const logIn = async (username, password) => {
     const response = await fetch('/login/password', {
       method: 'POST',

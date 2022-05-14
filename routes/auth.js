@@ -71,4 +71,25 @@ router.post('/signup', passport.authenticate('session'), (req, res, next) => {
   });
 });
 
+router.get('/session', passport.authenticate('session'), (req, res, next) => {
+  if (!req.user) {
+    res.status(403).end();
+    return;
+  }
+  
+  
+  var user = {
+    id: req.user.id
+  };
+  if (req.user.name) { user.name = req.user.name; }
+  if (req.user.username) { user.username = req.user.username; }
+  
+  console.log('session user is');
+  console.log(req.user)
+  console.log(user);
+  console.log(req.session)
+  
+  res.json({ user });
+});
+
 module.exports = router;

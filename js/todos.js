@@ -30,7 +30,7 @@ function Todos() {
       setTodos(json);
     }
     fetchData();
-  }, []);// TODO: put empty array here }, []);
+  }, [ auth.user ]);// TODO: put empty array here }, []);
   
   const handleCreate = async () => {
     const response = await fetch('/todos', {
