@@ -8,20 +8,9 @@ function LoginPrompt() {
     const formData = new FormData(event.currentTarget);
     const username = formData.get('username');
     const password = formData.get('password');
-    
-    const response = await fetch('/login/password', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ username, password })
-    });
-    // TODO: error handling
-    const json = await response.json();
-    auth.login(json.user);
+    await auth.login(username, password);
     navigate('/');
   }
-  
   
   return (
     <section className="prompt">

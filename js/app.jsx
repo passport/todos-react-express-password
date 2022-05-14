@@ -15,42 +15,25 @@ function AuthProvider({ children }) {
   const [user, setUser] = React.useState(null);
   //let [user, setUser] = React.useState({ id: 1, username: 'alice' });
 
-  const login = (user) => {
-    console.log('TODO: login...');
-    setUser(user);
-    
-    /*
-    return fakeAuthProvider.signin(() => {
-      setUser(newUser);
-      callback();
+  const login = async (username, password) => {
+    const response = await fetch('/login/password', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
     });
-    */
+    // TODO: error handling
+    const { user } = await response.json();
+    setUser(user);
   };
 
   const logout = async () => {
-    console.log('TODO: logout...');
-    
     const response = await fetch('/logout', {
       method: 'POST'
     });
     // TODO: error handling
-    
-    console.log(response.status);
-    console.log(response.ok);
     setUser(null);
-    
-    //const json = await response.json();
-    //auth.login(json.user);
-    
-    
-    //setUser(null);
-    
-    /*
-    return fakeAuthProvider.signout(() => {
-      setUser(null);
-      callback();
-    });
-    */
   };
 
   const value = { user, login, logout };
