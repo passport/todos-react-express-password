@@ -1,6 +1,6 @@
 function Todos() {
   const location = ReactRouterDOM.useLocation();
-  const auth = useAuthContext();
+  const auth = useAuth();
   const [todos, setTodos] = React.useState([]);
   const [editingTodo, setEditingTodo] = React.useState(null);
   const [newTitle, setNewTitle] = React.useState('');

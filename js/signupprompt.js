@@ -1,6 +1,6 @@
 function SignupPrompt() {
   const navigate = ReactRouterDOM.useNavigate();
-  const auth = useAuthContext();
+  const auth = useAuth();
   
   const handleSubmit = async (event) => {
     event.preventDefault();

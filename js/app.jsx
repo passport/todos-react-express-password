@@ -62,11 +62,11 @@ function AuthProvider({ children }) {
 }
 
 
-function useAuthContext() {
+function useAuth() {
   return React.useContext(AuthContext);
 }
 
-window.useAuthContext = useAuthContext;
+window.useAuth = useAuth;
 
 
 
