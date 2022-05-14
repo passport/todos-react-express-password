@@ -53,8 +53,12 @@ function AuthProvider({ children }) {
     */
   };
 
-  let value = { user, login, logout };
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  const value = { user, login, logout };
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 
