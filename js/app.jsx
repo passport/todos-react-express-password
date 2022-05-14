@@ -13,6 +13,7 @@ console.log(AuthContext);
 
 function AuthProvider({ children }) {
   let [user, setUser] = React.useState(null);
+  //let [user, setUser] = React.useState({ id: 1, username: 'alice' });
 
   let login = (user) => {
     console.log('TODO: login...');
@@ -69,6 +70,8 @@ class App extends React.Component {
         <div className="App">
           <ReactRouterDOM.Routes>
             <ReactRouterDOM.Route path="/" element={<Todos />} />
+            <ReactRouterDOM.Route path="/active" element={<Todos />} />
+            <ReactRouterDOM.Route path="/completed" element={<Todos />} />
             <ReactRouterDOM.Route path="/login" element={<LoginPrompt />} />
             <ReactRouterDOM.Route path="/signup" element={<SignupPrompt />} />
           </ReactRouterDOM.Routes>
