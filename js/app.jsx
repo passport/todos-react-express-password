@@ -27,9 +27,23 @@ function AuthProvider({ children }) {
     */
   };
 
-  let logout = () => {
+  let logout = async () => {
     console.log('TODO: logout...');
+    
+    const response = await fetch('/logout', {
+      method: 'POST'
+    });
+    // TODO: error handling
+    
+    console.log(response.status);
+    console.log(response.ok);
     setUser(null);
+    
+    //const json = await response.json();
+    //auth.login(json.user);
+    
+    
+    //setUser(null);
     
     /*
     return fakeAuthProvider.signout(() => {
