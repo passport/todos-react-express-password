@@ -38,7 +38,7 @@
     "express": "~4.16.1",
     "express-session": "^1.17.2",
     "morgan": "~1.9.1",
-    "passport": "^0.5.2",
+    "passport": "^0.5.3",
     "passport-local": "^1.0.0",
     "sqlite3": "^5.0.2",
     "todomvc-app-css": "^2.0.0",

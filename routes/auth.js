@@ -49,7 +49,7 @@ router.post('/logout', passport.authenticate('session'), (req, res, next) => {
   res.end();
 });
 
-router.post('/signup', passport.authenticate('session'), (req, res, next) => {
+router.post('/signup', passport.initialize(), (req, res, next) => {
   var salt = crypto.randomBytes(16);
   crypto.pbkdf2(req.body.password, salt, 310000, 32, 'sha256', (err, hashedPassword) => {
     if (err) { return next(err); }
